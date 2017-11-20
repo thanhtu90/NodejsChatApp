@@ -47,7 +47,14 @@ io.on("connection", function(socket){
     });
 
     socket.on("client-logout", function(data){
-        let idx_item_to_remove = online_users.indexOf(socket.Sender);
+        let idx_item_to_remove = -1;
+        for(let i = 0; i< online_users.length;i++){
+            if(socket.Sender == online_users[i].username){
+                idx_item_to_remove = i;
+                break ;
+            }
+        }
+
         online_users.splice(idx_item_to_remove, 1);
         
         let idx_socket_to_remove = -1;
@@ -61,10 +68,12 @@ io.on("connection", function(socket){
             idx_socket_to_remove,
             1
         )
+
         socket.emit("server-logout-success");
         socket.broadcast.emit("server-send-online-user-list", online_users);
 
         socket.disconnect()
+        
     });
 
     // socket.on("client-send-message", function(data){
