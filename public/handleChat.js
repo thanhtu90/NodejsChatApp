@@ -1,4 +1,4 @@
-let socket = io("ec2-18-217-67-211.us-east-2.compute.amazonaws.com:3000",{forceNew: true});
+let socket = io("playground.thanhtu.com.vn:3000",{forceNew: true});
 let conversations = {};
 
 function join_room(user_to_chat){
