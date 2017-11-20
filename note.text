@@ -1,0 +1,39 @@
+register
+1. event-name : client-register-new-user
+   event-type : socket.emit()
+2. event-name : server-response-register-fail
+   event-type : socket.emit()
+3. event-name : server-response-register-succed
+   event-type : socket.emit()
+4. event-name : server-send-online-user-list
+   event-type : io.sockets.emit()
+
+logout
+1. event-name : client-logout
+   event-type : socket.emit()
+2. event-name : server-send-online-user-list
+   event-type : sockets.broadcast.emit()
+3. event-name : server-logout-success
+   event-type : socket.emit()
+
+chat all
+1. event-name : client-send-message
+   event-type : socket.emit()
+2. event-name : server-send-message
+   event-type : io.sockets.emit()
+
+typing
+1. event-name : client-is-typing
+   event-type : socket.emit()
+2. event-name : server-inform-user-is-typing
+   event-type : io.sockets.emit()
+3. event-name : client-stop-typing
+   event-type : socket.emit()
+4. event-name : server-inform-user-stop-typing
+   event-type : io.sockets.emit()
+
+chat with user
+1. event-name : user-join-room
+   event-type : socket.emit()
+3. event-name : server-inform-user-join-room
+   event-type : io.broadcast.to(room).emit()

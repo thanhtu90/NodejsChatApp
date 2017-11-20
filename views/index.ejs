@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat Application</title>
+    <script src="jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="handleChat.js"></script>
+
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="layout.css">
+</head>
+<body class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">Chat Application</h1>
+        <p class="lead">This is just a demo applying NodeJs and Socket.IO</p> 
+    </div>
+    <div id="wrapper">
+        <div id="loginForm" class="row">
+            <div class="container">
+                <h3>Your username:</h3>
+                <div class="cols-sm-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter your Username">
+                        </div>
+                        <button class="btn btn-primary" 
+                        value="Register"
+                        id="btnRegister">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="chatForm" class="row">
+            <div id="left" class="col-sm-3">
+                <div id="boxTitle">
+                    <div id="boxContent">
+                    </div>
+                </div>
+            </div>
+            <div id="right" class="col-sm-9">
+                <div id="sayHi">
+                    <form class="topform">
+                        <label>Hello, <span id="currentUser"></span></label>
+                        <button class="floatright btn btn-primary" 
+                        value="Logout"
+                        id="btnLogout">Logout</button>
+                    </form>
+                    <p>
+                        <img src="./img/avatar.jpeg" class="avatar img-circle img-responsive center-block">
+                        Conversation with <span id="userToChatWith"></span>
+                    </p>
+                    
+                </div>
+                <div id="listMessages">
+                </div>
+                <div id="isTyping"><p class="white-text">.</p></div>
+
+                <input type="text" id="txtMessage" />
+                <input type="hidden" id="room_id" />
+                <input type="hidden" id="active_room_id" />
+                <button class="btn btn-primary" 
+                id="btnSendMessage">Send</button>
+            </div>    
+        </div>
+    </div>
+    <hr>
+    <div class="jumbotron">
+        <p class="lead">Thank you</p> 
+    </div>
+</body>
+</html>

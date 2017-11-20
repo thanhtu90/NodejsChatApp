@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+    <script src="jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        let socket = io("http://localhost:3000");
+        socket.on("server-send-data",function(data){
+                    // $("#chat").append(data.message);
+                    $("#chat").append(data.res);
+                })
+        socket.on("server-change-color",function(data){
+            $("#body").css("background-color",data.bgcolor)
+        });
+        $(document).ready(function(){
+            $("#mrA").click(function(){
+                // socket.emit("client-send-data",{
+                //     message:"Hello"
+                // });
+                socket.emit("client-send-data",{
+                    a: $("#a").val(),
+                    b: $("#b").val()
+                })
+            });
+            $("#do").click(function(){
+                socket.emit("client-change-color",{
+                    "bgcolor":"red"
+                })
+            });
+            $("#vang").click(function(){
+                socket.emit("client-change-color",{
+                    "bgcolor":"yellow"
+                })
+            });
+            $("#xanh").click(function(){
+                socket.emit("client-change-color",{
+                    "bgcolor":"green"
+                })
+            });
+        });
+    </script>
+    <style>
+        #do, #xanh, #vang {width: 200px,; height:50px}
+        #do {background-color: red}
+        #xanh {background-color: green}
+        #vang {background-color: yellow}
+        #body {background-color: pink}
+    </style>
+</head>
+<body id="body">
+    <div id="chat"></div>
+    <input type="text" id="a">
+    <input type="text" id="b">
+    <div id="mrA">Click Send</div>
+
+    <div id="do"></div>
+    <div id="xanh"></div>
+    <div id="vang"></div>
+</body>
+</html>
